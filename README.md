@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# 💳 Discount code module
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A discount code management system built with React and TypeScript. This module provides a complete solution for creating, managing, and tracking discount codes with advanced form validation. I built this project for learning purposes, focusing on complex form handling and state management patterns.
 
-## Available Scripts
+## 📦 Technologies
 
-In the project directory, you can run:
+- `React.js`
+- `TypeScript`
+- `Bootstrap 5`
+- `Zustand`
+- `Zod`
+- `Axios`
+- `Sass/SCSS`
+- `MockAPI`
 
-### `npm start`
+##  Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Here's what you can do with the Discount Code Manager:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Create Discount Codes**: Generate discount codes with flexible configurations. Choose between percentage discounts or fixed amount discounts.
+  
+- **Form Validation**: Real-time form validation with Zod schema validation. The system provides immediate feedback and handles complex validation rules based on discount type.
+  
+- **Manage Discount Lists**: View all your discount codes in an organized list. Filter and sort codes based on status (active, expired, future).
+  
+- **Date Range Control**: Set validity periods with start and end dates. Codes automatically transition between future, active, and expired states.
+  
+- **Usage Tracking**: Monitor discount code usage with configurable limits to prevent abuse.
 
-### `npm test`
+- **Sorting & Searching**: Sort discount codes and search by title for quick access and management.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 👩🏽‍🍳 The Process
 
-### `npm run build`
+I set out to build a discount code management module that could be easily integrated into SaaS platforms or e-commerce backoffices. The aim was to create a robust, reusable micro frontend with advanced form validation and flexible configuration.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To achieve this, I designed and implemented a system for creating, managing, and tracking discount codes, focusing on handling complex forms and edge cases. I made sure the architecture was modular and maintainable for future reuse.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I started by setting up the basic React TypeScript structure with Bootstrap for styling. The discount form was built with dynamic validation using Zod, handling conditional rules and edge cases like positive amounts and date validation. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To ensure code quality and reliability, I implemented automated unit tests for the core functionality using Jest and Testing Library. I also set up Husky to run tests locally before each commit and push, and configured GitHub Actions to run all tests on every push. This CI/CD pipeline helps catch issues early and keeps the codebase robust.
 
-### `npm run eject`
+I implemented a global state management pattern to keep form state and discount list state separate, ensuring clean separation of concerns. Axios was integrated for API communication and CRUD operations, with proper error handling throughout.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The UI was enhanced with custom SCSS and reusable SVG icon components, and the codebase was organized into a scalable folder structure with routing for maintainability. The result is a fully functional discount code module with real-time validation, CRUD operations, and a polished UI.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📚 What I Learned
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+During this project, I've picked up important skills and a better understanding of complex ideas, which improved my logical thinking.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 🧠 Advanced Form Handling
 
-## Learn More
+- **Complex Validation Logic**: Implementing sophisticated form validation with conditional rules based on discount type taught me how to handle complex form states and edge cases.
+- **Schema-driven Validation**: Using Zod for runtime type checking and validation helped me understand the power of schema-driven development.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 🎯 State Management & Architecture
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Logical Thinking**: Implementing a global state management pattern taught me how to efficiently manage shared state in a React application. I learned how to structure state and actions for scalability.
+- **Separation of Concerns**: Managing form state separately from application state improved the overall architecture.
 
-### Code Splitting
+### 🎨 TypeScript Integration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Type Safety**: Working with TypeScript throughout the application enhanced my understanding of type-driven development and helped catch errors early.
+- **Schema Inference**: Learning how to infer types from Zod schemas created a seamless development experience.
 
-### Analyzing the Bundle Size
+### 📈 Overall Growth
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Each part of this project helped me understand more about building scalable web applications with proper validation and state management. The most challenging and rewarding part was handling the complex form validation with all its edge cases. This could easily be integrated into a SaaS platform or e-commerce backoffice for clients.
 
-### Making a Progressive Web App
+## 💭 How can it be improved?
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+It can be integrated into a larger system with stuff like:
 
-### Advanced Configuration
+- Bulk operations: batch discount code creation and management.
+- Analytics dashboard: usage analytics and performance metrics.
+- Template system: predefined discount templates for quick setup.
+- Advanced filtering: more sophisticated search and filter options.
+- Export functionality: CSV/Excel export for reporting.
+- Internationalization: multi-language support for global deployment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🚦 Running the Project
 
-### Deployment
+To run the project in your local environment, follow these steps:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+1. Clone the repository to your local machine.
+2. Run `yarn install` in the project directory to install the required dependencies.
+3. Run `yarn start` to get the project started.
+4. Open [http://localhost:3000](http://localhost:3000) (or the address shown in your console) in your web browser to view the app.
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🍿 Video
