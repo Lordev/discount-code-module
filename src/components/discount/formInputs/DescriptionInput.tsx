@@ -29,22 +29,22 @@ export default function DescriptionInput({
 				<Col md={4}>
 					<Form.Label
 						className="fw-bold"
-						htmlFor="titel"
-						aria-label="Titel"
+						htmlFor="title"
+						aria-label="Title"
 					>
-						Titel
+						Title
 					</Form.Label>
 				</Col>
 				<Col md={8}>
 					<Form.Control
 						type="text"
-						id="titel"
-						value={formData.titel}
-						onChange={e => setFormValue('titel', e.target.value)}
-						isInvalid={!!formErrors.titel}
+						id="title"
+						value={formData.title}
+						onChange={e => setFormValue('title', e.target.value)}
+						isInvalid={!!formErrors.title}
 					/>
 					<Form.Control.Feedback type="invalid">
-						{formErrors.titel}
+						{formErrors.title}
 					</Form.Control.Feedback>
 				</Col>
 			</Row>
@@ -64,7 +64,7 @@ export default function DescriptionInput({
 						type="text"
 						id="code"
 						value={formData.code}
-						placeholder="LENTE20"
+						placeholder="SPRING20"
 						onChange={e => setFormValue('code', e.target.value)}
 						isInvalid={!!formErrors.code}
 					/>
@@ -83,26 +83,26 @@ export default function DescriptionInput({
 				<Col md={4} className="mt-2">
 					<Form.Label
 						className="fw-bold"
-						aria-label="Omschrijving"
-						htmlFor="omschrijving"
+						aria-label="Description"
+						htmlFor="description"
 					>
-						Omschrijving
+						Description
 					</Form.Label>
 				</Col>
 				<Col md={8}>
 					<Form.Control
 						as="textarea"
 						rows={5}
-						id="omschrijving"
-						value={formData.omschrijving}
-						placeholder="Omschrijf hier de kortingsactie. Waar is de korting voor bedoeld?"
+						id="description"
+						value={formData.description}
+						placeholder="Describe the discount action here. What is the discount intended for?"
 						onChange={e =>
-							setFormValue('omschrijving', e.target.value)
+							setFormValue('description', e.target.value)
 						}
-						isInvalid={!!formErrors.omschrijving}
+						isInvalid={!!formErrors.description}
 					/>
 					<Form.Control.Feedback type="invalid">
-						{formErrors.omschrijving}
+						{formErrors.description}
 					</Form.Control.Feedback>
 				</Col>
 			</Row>

@@ -1,36 +1,19 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import NavBar from 'components/layout/navbar';
-import Sidebar from 'components/layout/sidebar';
 import { Col, Tab, Row, Spinner, Container } from 'react-bootstrap';
 
-// pages
 const Management = lazy(() => import('./pages/management'));
-const Administratie = lazy(() => import('./pages/administratie'));
-const Kalender = lazy(() => import('./pages/kalender'));
-const Shop = lazy(() => import('./pages/shop'));
-const Communicatie = lazy(() => import('./pages/communicatie'));
-const Clubbeheer = lazy(() => import('./pages/clubbeheer'));
-const Configuratie = lazy(() => import('./pages/configuratie'));
-const Kortingscodes = lazy(() => import('./pages/management/kortingcodes'));
-const KortingscodesNieuw = lazy(
-	() => import('./pages/management/kortingcodes/nieuw')
+const Discountcodes = lazy(() => import('./pages/management/discount'));
+const DiscountcodesNew = lazy(
+	() => import('./pages/management/discount/new')
 );
-const ProductGroepen = lazy(() => import('./pages/management/productgroepen'));
-const Artikelen = lazy(() => import('./pages/management/artikelen'));
-const Abonnementen = lazy(() => import('./pages/management/abonnementen'));
-const Rittenkaarten = lazy(() => import('./pages/management/rittenkaarten'));
 
 const App: React.FC = () => {
 	return (
 		<>
 			<Tab.Container>
 				<Row className="no-gutter-row">
-					<Col sm={2} lg={2} xl={1} className="no-gutter-row">
-						<Sidebar />
-					</Col>
-					<Col sm={10} lg={10} xl={11} className="no-gutter-row">
-						<NavBar />
+					<Col sm={10} lg={10} xl={11} className="no-gutter-row mx-auto">
 						<Container
 							fluid={'xxl'}
 							className="mt-5 px-sm-5 px-3 min-vh-75"
@@ -42,61 +25,21 @@ const App: React.FC = () => {
 										element={<Management />}
 									>
 										<Route
-											path="productgroepen"
-											element={<ProductGroepen />}
-										/>
-										<Route
-											path="abonnementen"
-											element={<Abonnementen />}
-										/>
-										sssssssssssssss
-										<Route
-											path="rittenkaarten"
-											element={<Rittenkaarten />}
-										/>
-										b
-										<Route
-											path="artikelen"
-											element={<Artikelen />}
-										/>
-										<Route
-											path="kortingscodes"
-											element={<Kortingscodes />}
+											path="discount"
+											element={<Discountcodes />}
 										>
 											<Route
-												path="nieuw"
-												element={<KortingscodesNieuw />}
+												path="new"
+												element={<DiscountcodesNew />}
 											/>
 										</Route>
 									</Route>
-									<Route
-										path="/administratie"
-										element={<Administratie />}
-									/>
-									<Route
-										path="/kalender"
-										element={<Kalender />}
-									/>
-									<Route path="/shop" element={<Shop />} />
-									<Route
-										path="/communicatie"
-										element={<Communicatie />}
-									/>
-									<Route
-										path="/clubbeheer"
-										element={<Clubbeheer />}
-									/>
-									<Route
-										path="/configuratie"
-										element={<Configuratie />}
-									/>
-
-									{/* Redirect default to /management/kortingscodes */}
+									{/* Redirect default to /management/Discountcodes */}
 									<Route
 										path="*"
 										element={
 											<Navigate
-												to="/management/kortingscodes"
+												to="/management/discount"
 												replace
 											/>
 										}

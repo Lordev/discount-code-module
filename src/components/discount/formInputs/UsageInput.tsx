@@ -11,9 +11,9 @@ export default function UsageInput({ formErrors }: UsageInputProps) {
 
 	const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const isChecked = e.target.checked;
-		setFormValue('maximumGebruik', isChecked);
+		setFormValue('hasUsageLimit', isChecked);
 		if (!isChecked) {
-			setFormValue('aantalKeer', '');
+			setFormValue('usageCount', '');
 		}
 	};
 
@@ -22,19 +22,19 @@ export default function UsageInput({ formErrors }: UsageInputProps) {
 			<Row className="mb-3 align-items-center">
 				<Col lg={4}>
 					<Form.Label
-						aria-label="Maximumgebruik"
-						htmlFor="maximumGebruik"
+						aria-label="Maximum Usage"
+						htmlFor="hasUsageLimit"
 						className="fw-bold"
 					>
-						Maximumgebruik
+						Maximum Usage
 					</Form.Label>
 				</Col>
 				<Col lg={8}>
 					<Form.Check
 						type="checkbox"
-						id="maximumGebruik"
-						label="Ja"
-						checked={formData.maximumGebruik}
+						id="hasUsageLimit"
+						label="Yes"
+						checked={formData.hasUsageLimit}
 						onChange={e => handleCheckboxChange(e)}
 					/>
 				</Col>
@@ -42,27 +42,27 @@ export default function UsageInput({ formErrors }: UsageInputProps) {
 			<Row className="align-items-center">
 				<Col lg={4}>
 					<Form.Label
-						aria-label="Aantal keer te gebruiken"
-						htmlFor="aantalKeer"
+						aria-label="Number of Uses"
+						htmlFor="usageCount"
 						className="fw-bold"
 					>
-						Aantal keer te gebruiken
+						Number of Uses
 					</Form.Label>
 				</Col>
 				<Col lg={8}>
 					<Form.Control
-						disabled={!formData.maximumGebruik}
+						disabled={!formData.hasUsageLimit}
 						min={1}
 						type="number"
 						className="form-date w-25"
-						id="aantalKeer"
-						value={formData.aantalKeer}
+						id="usageCount"
+						value={formData.usageCount}
 						onChange={e =>
-							setFormValue('aantalKeer', e.target.value)
+							setFormValue('usageCount', e.target.value)
 						}
 					/>
 					<Form.Control.Feedback>
-						{formErrors.aantalKeer}
+						{formErrors.usageCount}
 					</Form.Control.Feedback>
 				</Col>
 			</Row>

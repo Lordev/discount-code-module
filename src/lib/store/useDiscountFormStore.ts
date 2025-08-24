@@ -3,7 +3,7 @@ import { FormData } from '../types/formSchema';
 
 interface FormState {
 	formData: FormData;
-	kortingsBedrag: string;
+	discountAmount: string;
 	setFormValue: (
 		key: keyof FormData,
 		value: FormData[keyof FormData]
@@ -13,19 +13,19 @@ interface FormState {
 
 export const useFormStore = create<FormState>(set => ({
 	formData: {
-		titel: '',
+		title: '',
 		code: '',
-		omschrijving: '',
-		kortingType: 'Bedrag',
-		kortingsPercentage: '',
-		geheelGetal: '',
-		decimaalGetal: '',
-		geldigVanaf: '',
-		geldigTot: '',
-		maximumGebruik: false,
-		aantalKeer: '',
+		description: '',
+		discountType: 'Number',
+		discountPercentage: '',
+		integerPart: '',
+		decimalPart: '',
+		validFrom: '',
+		validUntil: '',
+		hasUsageLimit: false,
+		usageCount: '',
 	},
-	kortingsBedrag: '',
+	discountAmount: '',
 	setFormValue: (key, value) =>
 		set(state => ({
 			formData: {
@@ -36,17 +36,17 @@ export const useFormStore = create<FormState>(set => ({
 	resetForm: () =>
 		set({
 			formData: {
-				titel: '',
+				title: '',
 				code: '',
-				omschrijving: '',
-				kortingType: 'Bedrag',
-				kortingsPercentage: '',
-				geheelGetal: '',
-				decimaalGetal: '',
-				geldigVanaf: '',
-				geldigTot: '',
-				maximumGebruik: false,
-				aantalKeer: '',
+				description: '',
+				discountType: 'Number',
+				discountPercentage: '',
+				integerPart: '',
+				decimalPart: '',
+				validFrom: '',
+				validUntil: '',
+				hasUsageLimit: false,
+				usageCount: '',
 			},
 		}),
 }));

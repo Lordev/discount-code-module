@@ -1,10 +1,10 @@
-import KortingcodeItem from './KortingcodeItem';
+import DiscountCodeItem from './DiscountCodeItem';
 import axios from 'axios';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import { useDiscountListStore } from 'lib/store/useDiscountListStore';
 import { fetchedDataArraySchema } from 'lib/types/fetchedData';
 
-export default function KortingscodeList() {
+export default function DiscountList() {
 	const { setDiscountList, sortedDiscountList, showBorder } =
 		useDiscountListStore();
 
@@ -29,8 +29,6 @@ export default function KortingscodeList() {
 		fetchData();
 	}, []);
 
-	console.log(showBorder);
-
 	return (
 		<div
 			className={`w-100 py-5 px-4 ${
@@ -38,7 +36,7 @@ export default function KortingscodeList() {
 			} d-flex gap-4 h-50`}
 		>
 			{sortedDiscountList.map(data => (
-				<KortingcodeItem key={data.ObjectID} data={data} />
+				<DiscountCodeItem key={data.objectId} data={data} />
 			))}
 		</div>
 	);

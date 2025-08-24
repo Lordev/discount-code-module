@@ -37,7 +37,7 @@ export const useDiscountListStore = create<DiscountListStore>((set, get) => ({
 	},
 
 	setDiscountList: discountList => {
-		const updatedList = discountList.map(calculateDiscountActive); // Calculate the active state of each discount
+		const updatedList = discountList.map(calculateDiscountActive);
 		set({ discountList: updatedList });
 		get().updateSortedDiscountList();
 		get().setShowBorder();
@@ -71,7 +71,7 @@ export const useDiscountListStore = create<DiscountListStore>((set, get) => ({
 	removeDiscount: discount => {
 		set(state => ({
 			discountList: state.discountList.filter(
-				d => d.ObjectID !== discount.ObjectID
+				d => d.objectId !== discount.objectId
 			),
 		}));
 		get().updateSortedDiscountList();
@@ -84,7 +84,7 @@ export const useDiscountListStore = create<DiscountListStore>((set, get) => ({
 
 		if (searchQuery) {
 			filteredList = discountList.filter(discount =>
-				discount.titel.toLowerCase().includes(searchQuery.toLowerCase())
+				discount.title.toLowerCase().includes(searchQuery.toLowerCase())
 			);
 		}
 
@@ -95,11 +95,11 @@ export const useDiscountListStore = create<DiscountListStore>((set, get) => ({
 		// Sort the list based on active discounts
 		let sortedList = [...filteredList];
 		if (sortingOption === 'title') {
-			sortedList.sort((a, b) => a.titel.localeCompare(b.titel));
+			sortedList.sort((a, b) => a.title.localeCompare(b.title));
 		} else if (sortingOption === 'date') {
 			sortedList.sort((a, b) => {
-				if (a.geldigVanaf < b.geldigVanaf) return -1;
-				if (a.geldigVanaf > b.geldigVanaf) return 1;
+				if (a.validFrom < b.validFrom) return -1;
+				if (a.validFrom > b.validFrom) return 1;
 				return 0;
 			});
 		}

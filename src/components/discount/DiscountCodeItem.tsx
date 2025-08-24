@@ -5,19 +5,18 @@ import { useDiscountListStore } from 'lib/store/useDiscountListStore';
 import { FetchedDataWithState } from 'lib/types/fetchedData';
 import { useState, useEffect } from 'react';
 
-export default function KortingcodeItem({
+export default function DiscountCodeItem({
 	data,
 }: {
 	data: FetchedDataWithState;
 }) {
 	const { removeDiscount } = useDiscountListStore();
-	console.log(data);
 
 	const handleDelete = async () => {
 		try {
 			removeDiscount(data);
 			await axios.delete(
-				`https://66d8747f37b1cadd8054b943.mockapi.io/api/DiscountItem/${data.ObjectID}`
+				`https://66d8747f37b1cadd8054b943.mockapi.io/api/DiscountItem/${data.objectId}`
 			);
 		} catch (error) {
 			console.error('Error deleting item:', error);
@@ -26,24 +25,24 @@ export default function KortingcodeItem({
 
 	const {
 		isActive,
-		FutureActive,
+		futureActive,
 		isExpired,
 		code,
-		kortingType,
-		titel,
-		geheelGetal,
-		kortingsPercentage,
-		geldigVanaf,
-		geldigTot,
-		decimaalGetal,
+		discountType,
+		title,
+		integerPart,
+		discountPercentage,
+		validFrom,
+		validUntil,
+		decimalPart,
 	} = data;
 
-	const geldigVanafLocal = geldigVanaf
-		? new Date(geldigVanaf).toLocaleDateString()
+	const validFromLocal = validFrom
+		? new Date(validFrom).toLocaleDateString()
 		: '';
 
-	const geldigTotLocal = geldigTot
-		? new Date(geldigTot).toLocaleDateString()
+	const validUntilLocal = validUntil
+		? new Date(validUntil).toLocaleDateString()
 		: '';
 
 	return (
@@ -56,25 +55,25 @@ export default function KortingcodeItem({
 					{isActive && (
 						<>
 							<Badge bg="success" className="text-uppercase">
-								Actief
+								Active
 							</Badge>
-							{geldigTotLocal && geldigVanafLocal}
-							{geldigTotLocal && <b>tot</b>}
-							{geldigTotLocal}
-							{!geldigTotLocal && <b>Onbeperkt</b>}
+							{validUntilLocal && validFromLocal}
+							{validUntilLocal && <b>until</b>}
+							{validUntilLocal}
+							{!validUntilLocal && <b>Unlimited</b>}
 						</>
 					)}
-					{FutureActive && (
+					{futureActive && (
 						<>
-							{!geldigTotLocal && <b>Vanaf</b>}
-							{geldigVanafLocal}
-							{geldigTotLocal && <b>tot</b>}
-							{geldigTotLocal}
+							{!validUntilLocal && <b>From</b>}
+							{validFromLocal}
+							{validUntilLocal && <b>until</b>}
+							{validUntilLocal}
 						</>
 					)}
 					{isExpired && (
 						<Badge bg="danger" className="text-uppercase">
-							Verlopen
+							Expired
 						</Badge>
 					)}
 				</small>
@@ -85,17 +84,17 @@ export default function KortingcodeItem({
 			>
 				<div>
 					<Card.Title className="custom-card-title">
-						{titel}
+						{title}
 					</Card.Title>
 					<Card.Text className="fs-xs text-muted">
-						{kortingType === 'Bedrag'
-							? `€${geheelGetal},${decimaalGetal.padEnd(
-									2,
-									'0'
-							  )} korting`
-							: kortingType === 'Percentage'
-							? `${kortingsPercentage}% korting`
-							: 'Onbekend'}
+						{discountType === 'Number'
+							? `€${integerPart},${decimalPart.padEnd(
+								2,
+								'0'
+							)} discount`
+							: discountType === 'Percentage'
+							? `${discountPercentage}% discount`
+							: 'Unknown'}
 					</Card.Text>
 				</div>
 				<TrashIcon

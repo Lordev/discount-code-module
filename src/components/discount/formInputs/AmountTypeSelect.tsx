@@ -13,28 +13,28 @@ export default function Typeinput({ formErrors }: TypeInputProps) {
 			<Row className="mb-3 align-items-center">
 				<Col lg={4}>
 					<Form.Label
-						aria-label="Type korting"
-						htmlFor="kortingType"
+						aria-label="Discount Type"
+						htmlFor="discountType"
 						className="fw-bold"
 					>
-						Type korting
+						Discount Type
 					</Form.Label>
 				</Col>
 				<Col lg={8}>
 					<Form.Select
 						className="form-select"
-						id="kortingType"
-						value={formData.kortingType}
+						id="discountType"
+						value={formData.discountType}
 						onChange={e =>
-							setFormValue('kortingType', e.target.value)
+							setFormValue('discountType', e.target.value)
 						}
-						isInvalid={!!formErrors.kortingType}
+						isInvalid={!!formErrors.discountType}
 					>
-						<option value="Bedrag">Bedrag</option>
+						<option value="Number">Number</option>
 						<option value="Percentage">Percentage</option>
 					</Form.Select>
 					<Form.Control.Feedback type="invalid">
-						{formErrors.kortingType}
+						{formErrors.discountType}
 					</Form.Control.Feedback>
 				</Col>
 			</Row>

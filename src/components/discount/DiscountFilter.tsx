@@ -7,13 +7,13 @@ import { PlusIcon } from '../common/svg';
 import { useNavigate } from 'react-router-dom';
 import { useDiscountListStore } from 'lib/store/useDiscountListStore';
 
-export default function KortingscodeFilter() {
+export default function DiscountFilter() {
 	const { setSortingOption, setSearchQuery, setShowInactiveDiscounts } =
 		useDiscountListStore();
 	const navigate = useNavigate();
 
 	const handleClick = () => {
-		navigate('/management/kortingscodes/nieuw');
+		navigate('/management/discount/new');
 	};
 
 	const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -35,15 +35,15 @@ export default function KortingscodeFilter() {
 				onChange={handleSortChange}
 				style={{ maxWidth: '300px' }}
 			>
-				<option value="title">Sorteer op titel</option>
-				<option value="date">Sorteer op geldig van datum</option>
+				<option value="title">Sort by title</option>
+				<option value="date">Sort by valid from date</option>
 			</Form.Select>
 			<InputGroup
 				className=""
 				style={{ maxWidth: '300px' }}
 				onChange={handleSearch}
 			>
-				<Form.Control type="text" placeholder="Zoek op titel" />
+				<Form.Control type="text" placeholder="Search based on title" />
 				<Button>
 					<SearchIcon width={14} height={14} />
 					Zoeken
@@ -56,15 +56,15 @@ export default function KortingscodeFilter() {
 				className="align-content-center d-flex gap-2 fs-sm"
 				label={
 					<span>
-						Toon{' '}
-						<span style={{ textDecoration: 'underline' }}>ook</span>{' '}
-						inactieve kortingscodes
+						Show{' '}
+						<span style={{ textDecoration: 'underline' }}>all</span>{' '}
+						inactive discount codes
 					</span>
 				}
 			/>
 			<Button onClick={handleClick} className="ms-xxl-auto">
 				<PlusIcon width={14} height={14} />
-				Nieuwe kortingscode
+				New Discount Code
 			</Button>
 		</div>
 	);

@@ -4,24 +4,8 @@ import { Link, useLocation, Outlet } from 'react-router-dom';
 
 const managementLinkTabs = [
 	{
-		path: '/management/productgroepen',
-		title: 'Productgroepen',
-	},
-	{
-		path: '/management/abonnementen',
-		title: 'Abonnementen',
-	},
-	{
-		path: '/management/rittenkaarten',
-		title: 'Rittenkaarten',
-	},
-	{
-		path: '/management/artikelen',
-		title: 'Artikelen',
-	},
-	{
-		path: '/management/kortingscodes',
-		title: 'Kortingscodes',
+		path: '/management/discount',
+		title: 'Discount Codes',
 	},
 ];
 

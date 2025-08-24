@@ -14,59 +14,59 @@ export default function DateInput({ formErrors }: DateInputProps) {
 			<Row className="mb-3 align-items-center">
 				<Col lg={4}>
 					<Form.Label
-						aria-label="Geldig van datum"
-						htmlFor="geldigVanaf"
+						aria-label="Valid From Date"
+						htmlFor="validFrom"
 						className="fw-bold"
 					>
-						Geldig van datum
+						Valid From Date
 					</Form.Label>
 				</Col>
 				<Col lg={8}>
 					<Form.Control
 						type="date"
 						className="form-date"
-						id="geldigVanaf"
-						value={formData.geldigVanaf}
+						id="validFrom"
+						value={formData.validFrom}
 						min={new Date().toISOString().split('T')[0]}
 						onChange={e =>
-							setFormValue('geldigVanaf', e.target.value)
+							setFormValue('validFrom', e.target.value)
 						}
-						max={formData.geldigTot || undefined}
-						isInvalid={!!formErrors.geldigVanaf}
+						max={formData.validUntil || undefined}
+						isInvalid={!!formErrors.validFrom}
 					/>
 					<Form.Control.Feedback type="invalid">
-						{formErrors.geldigVanaf}
+						{formErrors.validFrom}
 					</Form.Control.Feedback>
 				</Col>
 			</Row>
 			<Row className="align-items-center">
 				<Col lg={4}>
 					<Form.Label
-						aria-label="Geldig tot datum"
-						htmlFor="geldigTot"
+						aria-label="Valid Until Date"
+						htmlFor="validUntil"
 						className="fw-bold"
 					>
-						Geldig tot datum
+						Valid Until Date
 					</Form.Label>
-					<i className="d-block">(optioneel)</i>
+					<i className="d-block">(optional)</i>
 				</Col>
 				<Col lg={8}>
 					<Form.Control
 						type="date"
 						className="form-date"
-						id="geldigTot"
-						value={formData.geldigTot}
+						id="validUntil"
+						value={formData.validUntil}
 						onChange={e =>
-							setFormValue('geldigTot', e.target.value)
+							setFormValue('validUntil', e.target.value)
 						}
 						min={
-							formData.geldigVanaf ||
+							formData.validFrom ||
 							new Date().toISOString().split('T')[0]
 						}
-						isInvalid={!!formErrors.geldigTot}
+						isInvalid={!!formErrors.validUntil}
 					/>
 					<Form.Control.Feedback type="invalid">
-						{formErrors.geldigTot}
+						{formErrors.validUntil}
 					</Form.Control.Feedback>
 				</Col>
 			</Row>

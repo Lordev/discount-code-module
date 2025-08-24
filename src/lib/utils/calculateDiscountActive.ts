@@ -6,23 +6,23 @@ export const calculateDiscountActive = (
 	discount: FetchedData
 ): FetchedDataWithState => {
 	const currentDate = new Date().getTime();
-	const startingDate = new Date(discount.geldigVanaf).getTime();
-	const endingDate = new Date(discount.geldigTot).getTime();
+	const startingDate = new Date(discount.validFrom).getTime();
+	const endingDate = new Date(discount.validUntil).getTime();
 
 	let isActive = false;
-	if (discount.geldigTot) {
+	if (discount.validUntil) {
 		isActive = currentDate >= startingDate && currentDate <= endingDate;
 	} else {
 		isActive = currentDate >= startingDate;
 	}
 
-	const FutureActive = startingDate > currentDate;
+	const futureActive = startingDate > currentDate;
 	const isExpired = currentDate > endingDate;
 
 	return {
 		...discount,
 		isActive,
-		FutureActive,
+		futureActive,
 		isExpired,
 	};
 };

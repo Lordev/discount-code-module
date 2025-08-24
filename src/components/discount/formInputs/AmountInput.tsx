@@ -7,64 +7,67 @@ export default function AmountInput({
 }: {
 	formErrors: Record<string, string>;
 }) {
-	const { formData, setFormValue, kortingsBedrag } = useFormStore();
+	const { formData, setFormValue, discountAmount } = useFormStore();
 
 	useEffect(() => {
-		if (kortingsBedrag) {
-			const [geheelGetal, decimaalGetal] = kortingsBedrag.split(',');
-			setFormValue('geheelGetal', geheelGetal);
-			setFormValue('decimaalGetal', decimaalGetal);
+		if (discountAmount) {
+			const [integerPart, decimalPart] = discountAmount.split(',');
+			setFormValue('integerPart', integerPart);
+			setFormValue('decimalPart', decimalPart);
 		}
-	}, [formData.geheelGetal, formData.decimaalGetal]);
+	}, [formData, formData.decimalPart]);
 
 	return (
 		<>
 			<Row>
 				<Col md={4}>
 					<Form.Label
-						aria-label="Kortingsbedrag"
-						htmlFor="kortingsBedrag"
+						aria-label="Discount Amount"
+						htmlFor="discountAmount"
 						className="fw-bold mt-2 "
 					>
-						Kortingsbedrag
+						Discount Amount
 					</Form.Label>
 				</Col>
-				{formData.kortingType === 'Bedrag' ? (
+				{formData.discountType === 'Number' ? (
 					<Col lg={8} xl={5} className="d-flex">
 						<Form.Group>
 							<Form.Control
-								aria-label="Heel getal"
-								placeholder="1.000"
+								aria-label="Whole Number"
+								placeholder="1,000"
 								type="number"
-								id="geheelGetal"
-								value={formData.geheelGetal}
-								onChange={e =>
-									setFormValue('geheelGetal', e.target.value)
-								}
-								isInvalid={!!formErrors.geheelGetal}
+								id="integerPart"
+								value={formData.integerPart}
+								onChange={e => {
+									const newValue = e.target.value;
+									if (parseFloat(newValue) >= 0) {
+										setFormValue('integerPart', newValue);
+									}
+								}}
+								isInvalid={!!formErrors.integerPart}
 							/>
 							<Form.Control.Feedback type="invalid">
-								{formErrors.geheelGetal}
+								{formErrors.integerPart}
 							</Form.Control.Feedback>
 						</Form.Group>
 						<span className="mx-2 mt-3">,</span>
 						<Form.Group>
 							<Form.Control
-								aria-label="Decimaal"
+								aria-label="Decimal"
 								placeholder="00"
-								id="decimaalGetal"
+								id="decimalPart"
 								type="number"
-								value={formData.decimaalGetal}
+								value={formData.decimalPart}
 								onChange={e => {
 									const newValue = e.target.value;
-									if (newValue.length <= 2) {
-										setFormValue('decimaalGetal', newValue);
+									if (newValue.length <= 2 && parseInt(newValue) >= 0) {
+										setFormValue('decimalPart', newValue);
 									}
 								}}
-								isInvalid={!!formErrors.decimaalGetal}
+								isInvalid={!!formErrors.decimalPart}
 							/>
 							<Form.Control.Feedback type="invalid">
-								{formErrors.decimaalGetal}
+								{formErrors.decimalPart}
 							</Form.Control.Feedback>
 						</Form.Group>
 					</Col>
@@ -77,11 +80,11 @@ export default function AmountInput({
 									id="percentage"
 									min="1"
 									max="99"
-									value={formData.kortingsPercentage}
+									value={formData.discountPercentage}
 									placeholder="00"
 									onChange={e =>
 										setFormValue(
-											'kortingsPercentage',
+											'discountPercentage',
 											e.target.value
 										)
 									}
@@ -92,19 +95,19 @@ export default function AmountInput({
 									aria-label="Percentage"
 									id="percentage"
 									min="1"
-									max="99"
+									max="100"
 									className="col-md-4"
-									value={formData.kortingsPercentage}
+									value={formData.discountPercentage}
 									onChange={e =>
 										setFormValue(
-											'kortingsPercentage',
+											'discountPercentage',
 											e.target.value
 										)
 									}
 								/>
 							</Col>
 							<Form.Control.Feedback type="invalid">
-								{formErrors.kortingsPercentage}
+								{formErrors.discountPercentage}
 							</Form.Control.Feedback>
 						</Row>
 					</Col>

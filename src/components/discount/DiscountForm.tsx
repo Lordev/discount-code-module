@@ -17,7 +17,7 @@ import {
 import axios from 'axios';
 import { Col, Row, Container } from 'react-bootstrap';
 
-export default function KortingscodeForm() {
+export default function DiscountForm() {
 	const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 	const [hasTriedToSubmit, setHasTriedToSubmit] = useState(false);
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -33,12 +33,17 @@ export default function KortingscodeForm() {
 			if (e instanceof z.ZodError) {
 				const errors: Record<string, string> = {};
 
-				e.errors.forEach(
-					error => (errors[error.path[0]] = error.message)
-				);
+				e.issues.forEach((error: z.ZodIssue) => {
+					const path = error.path[0];
+					if (typeof path === 'string') {
+						errors[path] = error.message;
+					}
+				});
 
 				setFormErrors(errors);
-				console.log('Form errors:', errors);
+				if (Object.keys(errors).length > 0) {
+					console.error('Form errors:', errors);
+				}
 			}
 			return false;
 		}
@@ -66,23 +71,21 @@ export default function KortingscodeForm() {
 					'https://66d8747f37b1cadd8054b943.mockapi.io/api/DiscountItem',
 					formData
 				);
-				console.log('Form submission successful:', response.data);
 				resetForm();
-				navigate('/management/kortingscodes');
+				navigate('/management/Discountcodes');
 			} catch (error) {
 				console.error('Form submission error:', error);
 			} finally {
 				setIsSubmitting(false);
 			}
 		} else {
-			console.log('Form contains errors. Submission aborted.');
 			setIsSubmitting(false);
 		}
 	};
 
 	const handleCancel = () => {
 		resetForm();
-		navigate('/management/kortingscodes');
+		navigate('/management/Discountcodes');
 	};
 
 	return (
@@ -92,7 +95,7 @@ export default function KortingscodeForm() {
 					<Col md={5}>
 						<div className="d-flex gap-3">
 							<InfoIcon width={24} height={24} />
-							<h5 className="text-dark fw-bold">Informatie</h5>
+							<h5 className="text-dark fw-bold">Information</h5>
 						</div>
 						<hr className="py-2 " />
 						<Col md={12} xl={12}>
@@ -102,7 +105,7 @@ export default function KortingscodeForm() {
 					<Col md={5}>
 						<div className="d-flex gap-3">
 							<SlidersIcon width={24} height={24} />
-							<h5 className="text-dark fw-bold">Instellingen</h5>
+							<h5 className="text-dark fw-bold">Settings</h5>
 						</div>
 						<hr className="py-2 " />
 						<Col md={12} xl={12}>
@@ -123,7 +126,7 @@ export default function KortingscodeForm() {
 				<hr className="py-2 " />
 				<div className="d-flex gap-2">
 					<Button onClick={() => handleCancel()} variant="muted">
-						Annuleren
+						Cancel
 					</Button>
 					<Button
 						type="submit"
@@ -132,11 +135,11 @@ export default function KortingscodeForm() {
 					>
 						{isSubmitting ? (
 							<>
-								Bezig...{' '}
+								{'Saving... '}
 								<Spinner animation="border" size="sm" />
 							</>
 						) : (
-							'Opslaan'
+							'Save'
 						)}
 					</Button>
 				</div>
