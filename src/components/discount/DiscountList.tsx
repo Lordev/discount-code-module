@@ -30,14 +30,17 @@ export default function DiscountList() {
 	}, []);
 
 	return (
-		<div
-			className={`w-100 py-5 px-4 ${
-				showBorder && 'border'
-			} d-flex gap-4 h-50`}
-		>
-			{sortedDiscountList.map(data => (
-				<DiscountCodeItem key={data.objectId} data={data} />
-			))}
-		</div>
+   <div
+	   className={`w-100 py-5 px-4 ${showBorder && 'border'} d-flex gap-4 h-50 overflow-auto`}
+	   style={{
+		   whiteSpace: 'nowrap',
+	   }}
+   >
+	   {sortedDiscountList.map(data => (
+		   <div style={{ display: 'inline-block' }} key={data.objectId}>
+			   <DiscountCodeItem data={data} />
+		   </div>
+	   ))}
+   </div>
 	);
 }
