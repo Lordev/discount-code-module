@@ -12,6 +12,10 @@ A discount code management system built with React and TypeScript. This module p
 - `Axios`
 - `Sass/SCSS`
 - `MockAPI`
+- `Jest`
+- `Testing Library`
+- `Husky` 
+- `GitHub Actions`
 
 ##  Features
 
