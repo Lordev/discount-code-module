@@ -98,6 +98,7 @@ export default function DiscountCodeItem({
 					</Card.Text>
 				</div>
 				<TrashIcon
+					data-testid="delete-button"
 					width={14}
 					height={15}
 					className="hover-text-secondary cursor-pointer"
