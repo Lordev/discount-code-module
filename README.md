@@ -91,3 +91,11 @@ To run the project in your local environment, follow these steps:
 4. Open [http://localhost:3000](http://localhost:3000) (or the address shown in your console) in your web browser to view the app.
 
 ## 🍿 Video
+
+## Creating a discount code 
+https://github.com/user-attachments/assets/2ebf2752-36ae-4a8c-8dc4-e3f90dd30efd
+
+## Filter features  
+https://github.com/user-attachments/assets/a4089788-c86f-4a9e-a2f2-980aa45eab28
+
+
